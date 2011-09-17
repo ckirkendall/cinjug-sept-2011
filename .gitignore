@@ -1,0 +1,6 @@
+*jar
+*/classes/*
+*/target/*
+*/.settings
+*/.lein-deps-sum
+.metadata

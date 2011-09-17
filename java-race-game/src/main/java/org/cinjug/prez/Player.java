@@ -29,7 +29,7 @@ public class Player {
             public void run() {
                 try {
                 	while(response==null){
-                		Thread.sleep(5);
+                		Thread.sleep(2);
                 		move(tracker,maxMoves);
                 	}
                 } catch (Exception e) {

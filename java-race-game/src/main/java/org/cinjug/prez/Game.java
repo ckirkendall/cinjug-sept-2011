@@ -75,7 +75,8 @@ public class Game {
     
     
    public static void main(String args[]){
-	   try {
+     try {
+		long startTime=System.currentTimeMillis();
 		Game game = new Game();
 		game.setMaxMoves(1000);
 		game.setOfficial(new GameOfficial());
@@ -91,7 +92,9 @@ public class Game {
 		}
 		Thread.sleep(100);
 		System.out.println(game.getOfficial().getGameLog());
-		
+
+		long runTime=(System.currentTimeMillis()-startTime);
+		System.out.println("Execution Time: "+runTime);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

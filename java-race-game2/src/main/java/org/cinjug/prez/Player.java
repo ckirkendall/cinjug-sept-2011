@@ -34,7 +34,7 @@ public class Player {
             public void run() {
                 try {
                 	while(!finished){
-                		Thread.sleep(5);
+                		Thread.sleep(2);
                 		move(tracker,maxMoves);
                 	}
                 } catch (Exception e) {
