@@ -1,6 +1,5 @@
-package org.cinjug.prez.beans;
+package org.cinjug.prez;
 
-import org.cinjug.prez.Game;
 
 public class GameStateTracker {
 	private int totalMoves=0;

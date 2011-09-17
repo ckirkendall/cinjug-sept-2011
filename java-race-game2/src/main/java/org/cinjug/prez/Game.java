@@ -80,9 +80,7 @@ public class Game {
 		game.setMaxMoves(1000);
 		game.setOfficial(new GameOfficial());
 		for (int i = 0; i < 20; i++) {
-			Player p = new Player();
-			p.setFirstName("fn" + i);
-			p.setLastName("ln" + i);
+			Player p = new Player("fn"+i, "ln"+i);
 			game.registerPlayer(p);
 		}
 		game.startGame();

@@ -1,4 +1,5 @@
-package org.cinjug.prez.beans;
+package org.cinjug.prez;
+
 
 public class Player {
 	private String firstName=null;	
