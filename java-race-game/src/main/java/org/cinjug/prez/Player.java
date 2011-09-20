@@ -9,29 +9,28 @@ public class Player {
 	private int moves=0;
 	
 	private void move(GameStateTracker tracker, int maxMoves){
-		if(moves<maxMoves){
-			moves++;
-			tracker.incrementTotalMoves();
-			tracker.setLastMoverFName(firstName);
-			tracker.setLastMoverLName(lastName);
-		}else if(moves==maxMoves && tracker.getWinner()==null){
-			response="COOL I WON!!!!";
-			tracker.setWinner(this);
-			this.finished=true;
-		}else{
-			response="I lost...";
-			this.finished=true;
-		}
+		moves++;
+		tracker.incrementTotalMoves();
+		tracker.setLastMoverFName(firstName);
+		tracker.setLastMoverLName(lastName);
 	}
 	
 	public void startMoving(final GameStateTracker tracker, final int maxMoves){
+		final Player current=this;
 		new Thread(new Runnable() {
             public void run() {
                 try {
-                	while(response==null){
+                	while(moves<maxMoves){
                 		Thread.sleep(2);
                 		move(tracker,maxMoves);
                 	}
+                	if(tracker.getWinner()==null){
+                		response="COOL I WON!!!!";
+            			tracker.setWinner(current);
+                	}else{
+                		response="I lost...";
+                	}
+                	finished=true;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

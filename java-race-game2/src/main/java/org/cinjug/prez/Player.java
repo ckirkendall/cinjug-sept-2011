@@ -17,26 +17,25 @@ public class Player {
 	}
 	
 	private void move(GameStateTracker tracker, int maxMoves){
-		if(getMoves()<maxMoves){
 			incrementMoves();
 			tracker.playerMove(this);
-		}else if(getMoves()==maxMoves && tracker.isWinner(this)){
-			setResponse("COOL I WON!!!!");
-			setFinished(true);
-		}else{
-			setResponse("I lost...");
-			setFinished(true);
-		}
 	}
 	
 	public void startMoving(final GameStateTracker tracker, final int maxMoves){
+		final Player current=this;
 		new Thread(new Runnable() {
             public void run() {
                 try {
-                	while(!finished){
+                	while(moves<maxMoves){
                 		Thread.sleep(2);
                 		move(tracker,maxMoves);
                 	}
+                	if(tracker.isWinner(current)){
+                		setResponse("COOL I WON!!!!");
+            		}else{
+            			setResponse("I lost...");
+                	}
+                	current.setFinished(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
