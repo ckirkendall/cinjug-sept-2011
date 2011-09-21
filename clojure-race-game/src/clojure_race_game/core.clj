@@ -47,7 +47,6 @@
 (defn game-finished? [ref-players]
   (empty? (filter #(not (:finished @%1)) ref-players)))
       
-
 (defn monitor-game [game-state players game-log]
   (. java.lang.Thread sleep 10)
   ;(println @game-state)
