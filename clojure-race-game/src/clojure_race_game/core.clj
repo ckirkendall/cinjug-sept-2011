@@ -14,29 +14,26 @@
   (dosync 
     (let [gstate @game-state
           player @ref-player]
-      (ref-set game-state (assoc gstate 
-                                 :total-moves (inc (:total-moves gstate))))
-      (ref-set ref-player (assoc player 
-                                 :moves (inc (:moves player))))))
+      (alter game-state assoc :total-moves (inc (:total-moves gstate)))
+      (alter ref-player assoc :moves (inc (:moves player)))))
   (dosync 
     (let [gstate @game-state
           player @ref-player]
       (if (< (:moves player) max-moves)
-        (ref-set game-state (assoc gstate 
-                                   :last-mov-fname (:first-name player)
-                                   :last-mov-lname (:last-name player)))
+        (alter game-state assoc 
+               :last-mov-fname (:first-name player)
+               :last-mov-lname (:last-name player))
         ;else
         (if (nil? (:winner gstate))
           (do
-            (ref-set game-state (assoc gstate 
-                                       :winner player))
-            (ref-set ref-player (assoc player
-                                       :response "COOL I WON!!!!"
-                                       :finished true)))
+            (alter game-state assoc :winner player)
+            (alter ref-player assoc 
+                   :response "COOL I WON!!!!"           
+                   :finished true))
           ;else
-          (ref-set ref-player (assoc player
-                                     :response "I lost..."
-                                     :finished true))))))
+          (alter ref-player assoc 
+                 :response "I lost..."
+                 :finished true)))))
     ref-player)
 
 (defn run-race [game-state ref-player max-moves]
@@ -79,10 +76,11 @@
         millis (. java.lang.System currentTimeMillis)]
     (loop [fin (game-finished? player-vec)]
       (if fin (do
+                (. java.lang.Thread sleep 100)
                 (println (second result))
                 (println (- (. java.lang.System currentTimeMillis) millis)))
         (do
-          (. java.lang.Thread sleep 100)
+          (. java.lang.Thread sleep 10)
           (recur (game-finished? player-vec)))))))
     
 

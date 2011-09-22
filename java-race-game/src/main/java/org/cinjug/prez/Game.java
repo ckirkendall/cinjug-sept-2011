@@ -88,8 +88,9 @@ public class Game {
 		}
 		game.startGame();
 		while (!game.isGameFinished()) {
-			Thread.sleep(100);
+			Thread.sleep(10);
 		}
+		Thread.sleep(100);
 		System.out.println(game.getOfficial().getGameLog());
 
 		long runTime=(System.currentTimeMillis()-startTime);
