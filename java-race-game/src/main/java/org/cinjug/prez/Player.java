@@ -21,7 +21,7 @@ public class Player {
             public void run() {
                 try {
                 	while(moves<maxMoves){
-                		Thread.sleep(2);
+                		//Thread.sleep(1);
                 		move(tracker,maxMoves);
                 	}
                 	if(tracker.getWinner()==null){
